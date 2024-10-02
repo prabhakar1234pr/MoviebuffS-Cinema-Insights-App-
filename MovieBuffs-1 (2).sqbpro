@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/elava/MovieBuffs.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="150"/><column_width id="3" width="1740"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,11:mainCinema_hall"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Cinema_hall" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="177"/><column index="2" value="181"/><column index="3" value="99"/><column index="4" value="127"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Movie" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="97"/><column index="2" value="141"/><column index="3" value="179"/><column index="4" value="144"/><column index="5" value="143"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="User_Table" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="83"/><column index="2" value="127"/><column index="3" value="271"/><column index="4" value="141"/><column index="5" value="168"/><column index="6" value="192"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Vote_Count_table" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="142"/><column index="2" value="136"/><column index="3" value="126"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Vote_Table" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="83"/><column index="2" value="120"/><column index="3" value="136"/><column index="4" value="195"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="comments" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="131"/><column index="2" value="120"/><column index="3" value="136"/><column index="4" value="149"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="screenings" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="155"/><column index="2" value="216"/><column index="3" value="136"/><column index="4" value="172"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">create table Movie(
+MovieID int primary key,
+Movie_name varchar(55),
+ Movie_language varchar(55),
+ Movie_genre varchar(55), release_date date );
+ insert into movie(MovieID,Movie_name,Movie_language,Movie_genre,release_date)
+ values (1,'The Avengers','English','Science Fantasy',&quot;2012-05-04&quot;);
+ insert into movie(MovieID,Movie_name,Movie_language,Movie_genre,release_date)
+ values (2,'Train to busan','Korean','Zombie Thriller',&quot;2016-07-22&quot;);
+ insert into movie(MovieID,Movie_name,Movie_language,Movie_genre,release_date)
+ values (3,'RRR','Telugu','Periodic Drama',&quot;2022-03-25&quot;);
+ insert into movie(MovieID,Movie_name,Movie_language,Movie_genre,release_date)
+ values (4,'An Elephant Sitting Still','Chinese','Suspense',&quot;2018-02-16&quot;);
+ 
+  create table User_Table(
+UserID int primary key,
+User_name varchar(55),
+ User_mail varchar(55),
+ location varchar(55), Mother_tongue varchar(55) , Favourite_movies varchar(55) );
+ 
+ insert into User_Table (UserID,User_name,User_mail,location,Mother_tongue,Favourite_movies)
+ values (100,&quot;Prabhakar&quot;,&quot;Prabhakarockstar@gmail.com&quot;,'7 south street','Telugu',&quot;Lagaan&quot;);
+  insert into User_Table (UserID,User_name,User_mail,location,Mother_tongue,Favourite_movies)
+ values (101,&quot;chun hua&quot;,&quot;huachun654@gmail.com&quot;,'11 down street','chinese',&quot;Kill Bill&quot;);
+  insert into User_Table (UserID,User_name,User_mail,location,Mother_tongue,Favourite_movies)
+ values (102,&quot;Preethi&quot;,&quot;ArjunPreethi@gmail.com&quot;,'18 love street','Tulu',&quot;Arjun Reddy&quot;);
+  insert into User_Table (UserID,User_name,User_mail,location,Mother_tongue,Favourite_movies)
+ values (103,&quot;John Carter&quot;,&quot;Carterthejohn@gmail.com&quot;,'789 the street','spanish',&quot;Spy&quot;);
+ 
+ create table comments(
+ commentID int primary key ,
+ FK_userID int  references User_Table (UserID),
+ FK_MovieID int  references Movie (MovieID),
+ Comments Varchar(1000) ) ;
+ 
+  insert into comments ( commentID , FK_userID , FK_MovieID , Comments ) 
+ values (1000,100,1,&quot;I love Iron Man&quot;);
+  insert into comments ( commentID , FK_userID , FK_MovieID , Comments ) 
+ values (1001,101,2,&quot;Super Movie&quot;);
+  insert into comments ( commentID , FK_userID , FK_MovieID , Comments ) 
+ values (1002,102,3,&quot;I like this movie&quot;);
+  insert into comments ( commentID , FK_userID , FK_MovieID , Comments ) 
+ values (1003,103,4,&quot;I love this app&quot;);
+ 
+  create table Vote_Table(
+ VoteID int primary key ,
+ FK_userID int  references User_Table (UserID),
+ FK_MovieID int  references Movie (MovieID),
+ Time_stamp datetime ) ;
+ 
+  insert into Vote_Table ( VoteID , FK_userID , FK_MovieID , Time_stamp ) 
+ values (10000,100,1,&quot;2024-01-29 10:22:04&quot;);
+   insert into Vote_Table ( VoteID , FK_userID , FK_MovieID , Time_stamp ) 
+ values (10001,101,2,&quot;2024-01-07 12:19:09&quot;);
+    insert into Vote_Table ( VoteID , FK_userID , FK_MovieID , Time_stamp ) 
+ values (10002,102,3,&quot;2024-01-29 7:45:52&quot;);
+    insert into Vote_Table ( VoteID , FK_userID , FK_MovieID , Time_stamp ) 
+ values (10003,103,4,&quot;2024-01-29 2:54:23&quot;);
+ 
+  create table Cinema_hall ( 
+ Cinema_Hall_ID int primary key ,
+ hall_location varchar(100),
+ Capacity int ,
+ Ticket_cost int );
+ 
+ insert into Cinema_hall(Cinema_Hall_ID , hall_location ,Capacity ,Ticket_cost )
+ values (100000,&quot;Boston Common 19&quot;,200,6);
+ insert into Cinema_hall(Cinema_Hall_ID , hall_location ,Capacity ,Ticket_cost )
+ values (100001,&quot;south bay 5&quot;,250,7);
+ insert into Cinema_hall(Cinema_Hall_ID , hall_location ,Capacity ,Ticket_cost )
+ values (100002,&quot;Dorcester street 7&quot;,300,8);
+ insert into Cinema_hall(Cinema_Hall_ID , hall_location ,Capacity ,Ticket_cost )
+ values (100003,&quot;10 town street&quot;,150,9);
+ 
+ create table Vote_Count_table( VoteCountID int primary key, 
+ FK_MovieID int references Movie (MovieID) , vote_count int  );
+ insert into Vote_Count_table(VoteCountID,FK_MovieID,Vote_count)
+ values (1000000,1,6547);
+  insert into Vote_Count_table(VoteCountID,FK_MovieID,Vote_count)
+ values (1000001,2,3452);
+  insert into Vote_Count_table(VoteCountID,FK_MovieID,Vote_count)
+ values (1000002,3,5744738);
+  insert into Vote_Count_table(VoteCountID,FK_MovieID,Vote_count)
+ values (1000003,4,48328);
+ create table screenings (AssignmentID int primary key,FK_Cinema_Hall_ID int references cinema_hall(Cinema_Hall_ID),
+ FK_MovieID int references Movie(MovieID),Screening_time datetime );
+ 
+ insert into screenings (AssignmentID ,FK_Cinema_Hall_ID,FK_MovieID,Screening_time)
+ values (10000000,100000,1,&quot;2024-02-20 10:30:00&quot;);
+  insert into screenings (AssignmentID ,FK_Cinema_Hall_ID,FK_MovieID,Screening_time)
+ values (10000001,100001,2,&quot;2024-02-21 11:30:00&quot;);
+  insert into screenings (AssignmentID ,FK_Cinema_Hall_ID,FK_MovieID,Screening_time)
+ values (10000002,100002,3,&quot;2024-02-22 12:30:00&quot;);
+  insert into screenings (AssignmentID ,FK_Cinema_Hall_ID,FK_MovieID,Screening_time)
+ values (10000003,100003,4,&quot;2024-02-23 01:30:00&quot;);
+ 
+ select Cinema_Hall_ID , hall_location ,Capacity ,Ticket_cost,MovieID,Movie_name,
+ Movie_language,Movie_genre,AssignmentID,Screening_time from Screenings 
+ join cinema_hall on screenings.FK_Cinema_Hall_ID = cinema_hall.Cinema_Hall_ID
+ join Movie on Movie.MovieID = screenings.FK_MovieID ;
+ 
+  select MovieID,Movie_name,Movie_language,Movie_genre,vote_count
+ from Movie join Vote_Count_table on Movie.MovieID = Vote_Count_table.FK_MovieID ;
+ 
+ select userID,User_mail,Location,Mother_tongue,Favourite_movies,MovieID,Movie_name,
+ Movie_genre ,VoteID,Time_stamp from Vote_Table join User_table
+ on Vote_Table.FK_userId = User_table.userID 
+ join Movie on Vote_Table.FK_MovieID=Movie.MovieID ;
+ 
+  select userID,User_mail,Location,Mother_tongue,Favourite_movies,MovieID,Movie_name,
+ Movie_genre ,commentID,Comments from Comments join User_table
+ on Comments.FK_userId = User_table.userID 
+ join Movie on Comments.FK_MovieID=Movie.MovieID ;
+ 
+  select MovieID,Movie_name,Movie_language ,
+ VoteCountID , vote_count ,
+ AssignmentID,FK_Cinema_Hall_ID,Screening_time from movie join vote_count_table on
+ Movie.MovieID = vote_count_table.FK_MovieID join screenings
+ on Movie.MovieID = screenings.FK_MovieID ;
+ 
+ select userID,User_name,User_mail,Location,Mother_tongue,MovieID,Movie_name,
+ Movie_genre ,VoteID,Time_stamp from Vote_Table join User_table
+ on Vote_Table.FK_userId = User_table.userID 
+ join Movie on Vote_Table.FK_MovieID=Movie.MovieID where UserID = 100 ;</sql><current_tab id="0"/></tab_sql></sqlb_project>
